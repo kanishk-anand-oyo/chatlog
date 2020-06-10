@@ -1,0 +1,15 @@
+.imgWrapper {
+  position: relative;
+  max-height: 80px;
+  max-width: 80px;
+}
+
+.imgClass {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.imgWrapper:hover .tooltip {
+  visibility: visible;
+}
