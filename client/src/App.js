@@ -36,7 +36,7 @@ class App extends Component {
         <div className="wrapper">
           {(!isFetching &&
             data.length &&
-            data.map((item) => <ChatCard {...item} key={item.messagedId} />)) ||
+            data.map((item) => <ChatCard {...item} key={item.messageId} />)) ||
             [1, 2, 3, 4, 5].map(() => <Placeholder />)}
         </div>
       </div>
