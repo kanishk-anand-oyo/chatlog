@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   width: 40%;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
   position: absolute;
@@ -21,4 +20,23 @@
   padding: 8px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+}
+
+@media only screen and (max-width: 768px) {
+  .App {
+    width: 100%;
+    position: static;
+    height: 100vh;
+  }
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+  .wrapper {
+    height: 100%;
+    max-height: none;
+    margin-top: 36px;
+  }
 }

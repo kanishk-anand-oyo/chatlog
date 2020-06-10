@@ -4,9 +4,9 @@ import Tooltip from "../Tootltip";
 import "./index.css";
 
 export default (props) => {
-  const { avatar, tooltipText } = props;
-  let finalImgUrl = avatar;
-  if (!avatar) {
+  const { imgSrc, tooltipText } = props;
+  let finalImgUrl = imgSrc;
+  if (!imgSrc) {
     finalImgUrl = PLACEHOLDER_AVATAR;
   }
   return (

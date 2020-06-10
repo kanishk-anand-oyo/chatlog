@@ -1,13 +1,14 @@
 .imgWrapper {
   position: relative;
-  max-height: 80px;
-  max-width: 80px;
+  height: 80px;
+  width: 80px;
 }
 
 .imgClass {
   cursor: pointer;
   height: 100%;
-  width: 100%;
+  width: auto;
+  border-radius: 50%;
 }
 
 .imgWrapper:hover .tooltip {

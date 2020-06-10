@@ -1,18 +1,47 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import ChatCard from "./components/ChatCard";
+import Placeholder from "./components/ChatCard/placeholder";
+import { getChatData } from "./utils/getChatData";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="header">ChatLog</header>
-      <div className="wrapper">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => (
-          <ChatCard />
-        ))}
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chatData: {
+        data: [],
+        error: null,
+        isFetching: true,
+      },
+    };
+  }
+
+  componentDidMount() {
+    getChatData({
+      successCb: (data) => {
+        this.setState({ chatData: { data, err: null, isFetching: false } });
+      },
+      failureCb: (error) => {
+        this.setState({ chatData: { data: [], error, isFetching: false } });
+      },
+    });
+  }
+  render() {
+    const {
+      chatData: { data, isFetching, error },
+    } = this.state;
+    return (
+      <div className="App">
+        <header className="header">ChatLog</header>
+        <div className="wrapper">
+          {(!isFetching &&
+            data.length &&
+            data.map((item) => <ChatCard {...item} key={item.messagedId} />)) ||
+            [1, 2, 3, 4, 5].map(() => <Placeholder />)}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

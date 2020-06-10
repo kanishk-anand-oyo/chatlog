@@ -3,7 +3,7 @@ export function encodeQueryParams(obj) {
     return "";
   }
   const str = [];
-  for (key in obj) {
+  for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
       const val = obj[key];
       if (val == undefined) {
@@ -31,8 +31,6 @@ export function getData(config) {
     method === "POST" || (method === "PATCH" && config.body)
       ? JSON.stringify(config.body)
       : null;
-  const successHandler = config.success;
-  const failureHandler = config.failure;
 
   // get query string from query params
   let url = host + path;
@@ -47,39 +45,10 @@ export function getData(config) {
     headers: { "Content-Type": "application/json", ...proxyHeaders },
   };
 
-  fetch(url, fetchData)
-    .then((response) => {
-      if (response.ok) {
-        response
-          .json()
-          .then((data) => {
-            if (successHandler) {
-              successHandler(data);
-            }
-          })
-          .catch((err) => {
-            if (failureHandler) {
-              failureHandler(err);
-            }
-          });
-      } else {
-        response
-          .json()
-          .then((data) => {
-            if (failureHandler) {
-              failureHandler(data);
-            }
-          })
-          .catch((error) => {
-            if (failureHandler) {
-              failureHandler(error);
-            }
-          });
-      }
-    })
-    .catch((error) => {
-      if (failureHandler) {
-        failureHandler(error);
-      }
-    });
+  return fetch(url, fetchData).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error(`${response.statusText} ${response.status}`);
+  });
 }

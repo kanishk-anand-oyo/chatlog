@@ -3,3 +3,20 @@
   align-items: center;
   margin: 16px 8px;
 }
+
+.imgPlaceholder,
+.msgPlaceholder {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  margin-bottom: 16px;
+  background: linear-gradient(to right, #eee 8%, #eaedf1 18%, #eee 33%);
+  background-size: 800px 104px;
+}
+
+.msgPlaceholder {
+  height: 40px;
+  width: calc(100% - 160px);
+  margin-left: 32px;
+  border-radius: 4px;
+}
